@@ -263,7 +263,7 @@ mtype matrixDet(matrix t)
 	{
 		result*=_matrixData(m,i,i);
 	}
-	deleteMatrix(m);
+	deleteMatrix(&m);
 	return flag*result;
 }
 
