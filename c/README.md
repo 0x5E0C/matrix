@@ -1,6 +1,5 @@
 github:https://github.com/0x5E0C/matrix
-
-gitee:https://gitee.com/wwx012138/matrix/
+gitee:https://gitee.com/wwx012138/matrix
 
 0.具体使用例程在test.c
 
