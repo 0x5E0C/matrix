@@ -30,7 +30,7 @@ matrix::~matrix()
 /********************************/
 //函数名：deleteMatrix
 //参数：矩阵的指针
-//返回值：无 
+//返回值：无
 //功能：释放该矩阵申请的内存
 /********************************/
 void matrix::deleteMatrix(matrix *m)
@@ -39,9 +39,9 @@ void matrix::deleteMatrix(matrix *m)
 }
 
 /****************************************/
-//函数名：deleteMatrices 
+//函数名：deleteMatrices
 //参数：矩阵列表的指针
-//返回值：无    
+//返回值：无
 //功能：释放该矩阵列表内的矩阵申请的内存
 /****************************************/
 void matrix::deleteMatrices(matrix *m[],int size)
@@ -55,9 +55,9 @@ void matrix::deleteMatrices(matrix *m[],int size)
 
 /********************************/
 //函数名：copyMatrix
-//参数：待拷贝矩阵   
+//参数：待拷贝矩阵
 //返回值：拷贝出的矩阵
-//功能：拷贝矩阵 
+//功能：拷贝矩阵
 /********************************/
 matrix matrix::copyMatrix(matrix *m)
 {
@@ -67,20 +67,20 @@ matrix matrix::copyMatrix(matrix *m)
 }
 
 /********************************/
-//函数名：setMatrix 
+//函数名：setMatrix
 //参数：待赋值矩阵，赋值数据
-//返回值：无 
-//功能：给矩阵赋值  
+//返回值：无
+//功能：给矩阵赋值
 /********************************/
 void matrix::setMatrix(mtype arg1,...)
 {
-	va_list valist;
+    va_list valist;
     int i;
     va_start(valist,arg1);
     *data=arg1;
     for(i=1;i<row*col;i++)
     {
-       *(data+i)=va_arg(valist,double);
+        *(data+i)=va_arg(valist,double);
     }
     va_end(valist);
 }
@@ -88,18 +88,18 @@ void matrix::setMatrix(mtype arg1,...)
 /********************************/
 //函数名：setDiagonalMatrix
 //参数：待赋值矩阵，赋值数据
-//返回值：无 
+//返回值：无
 //功能：给矩阵的对角线赋值
 /********************************/
 void matrix::setDiagonalMatrix(mtype arg1,...)
 {
-	va_list valist;
+    va_list valist;
     int i;
     va_start(valist,arg1);
     *data=arg1;
     for(i=2;i<=row;i++)
     {
-       _matrixData_p(this,i,i)=va_arg(valist,double);
+        _matrixData_p(this,i,i)=va_arg(valist,double);
     }
     va_end(valist);
 }
@@ -112,16 +112,16 @@ void matrix::setDiagonalMatrix(mtype arg1,...)
 /********************************/
 matrix matrix::matrixTrans()
 {
-	int i,j;
+    int i,j;
     matrix m=matrix(col,row);
     for(i=1;i<=row;i++)
-	{
+    {
         for(j=1;j<=col;j++)
-		{
+        {
             _matrixData(m,j,i)=_matrixData_p(this,i,j);
-		}
-	}
-	return m;
+        }
+    }
+    return m;
 }
 
 /********************************/
@@ -134,15 +134,15 @@ mtype matrix::matrixDet()
 {
     matrix m=copyMatrix(this);
     int i,j,k=1,h=1,a,b;
-	int order=m.row;
-	mtype mul;
-	mtype result=1,flag=1;
-	for(a=2;a<=order;a++)
-	{
-		for(i=a;i<=order;i++)
-		{
-			if(_matrixData(m,a-1,k)==0)
-			{
+    int order=m.row;
+    mtype mul;
+    mtype result=1,flag=1;
+    for(a=2;a<=order;a++)
+    {
+        for(i=a;i<=order;i++)
+        {
+            if(_matrixData(m,a-1,k)==0)
+            {
                 for(b=a;b<=order;b++)
                 {
                     if(_matrixData(m,b,k)!=0)
@@ -152,32 +152,32 @@ mtype matrix::matrixDet()
                         break;
                     }
                 }
-			}
+            }
             if(_matrixData(m,a-1,k)==0)
             {
                 return 0;
             }
-			mul=_matrixData(m,i,k)/_matrixData(m,a-1,k);
-			for(j=a-1;j<=order;j++)
-			{
-				_matrixData(m,i,j)=_matrixData(m,i,j)-mul*_matrixData(m,h,j);
-			}
+            mul=_matrixData(m,i,k)/_matrixData(m,a-1,k);
+            for(j=a-1;j<=order;j++)
+            {
+                _matrixData(m,i,j)=_matrixData(m,i,j)-mul*_matrixData(m,h,j);
+            }
         }
-		k++;
-		h++;
-	}
-	for(i=1;i<=order;i++)
-	{
-		result*=_matrixData(m,i,i);
-	}
+        k++;
+        h++;
+    }
+    for(i=1;i<=order;i++)
+    {
+        result*=_matrixData(m,i,i);
+    }
     deleteMatrix(&m);
-	return flag*result;
+    return flag*result;
 }
 
 /********************************/
-//函数名：matrixInv	
-//参数：无	
-//返回值：逆矩阵	
+//函数名：matrixInv
+//参数：无
+//返回值：逆矩阵
 //功能：求矩阵的逆矩阵
 /********************************/
 matrix matrix::matrixInv()
@@ -216,7 +216,7 @@ matrix matrix::matrixInv()
 }
 
 /********************************************************/
-//函数名：matrixMerge	
+//函数名：matrixMerge
 //参数：待合并的两个矩阵，方向（r：右合并，b：下合并）
 //返回值：合并后的矩阵
 //功能：合并矩阵
@@ -224,36 +224,36 @@ matrix matrix::matrixInv()
 matrix matrix::matrixMerge(matrix a,matrix b,char dir)
 {
     int i,j;
-	if(dir=='r')
+    if(dir=='r')
     {
         matrix m=matrix(a.row,a.col+b.col);
-		for(i=1;i<=a.row;i++)
-		{
-			for(j=1;j<=a.col;j++)
-			{
+        for(i=1;i<=a.row;i++)
+        {
+            for(j=1;j<=a.col;j++)
+            {
                 _matrixData(m,i,j)=_matrixData(a,i,j);
-			}
-			for(j=a.col+1;j<=a.col+b.col;j++)
-			{
+            }
+            for(j=a.col+1;j<=a.col+b.col;j++)
+            {
                 _matrixData(m,i,j)=_matrixData(b,i,j-a.col);
-			}
-		}
+            }
+        }
         return m;
-	}
-	else if(dir=='b')
+    }
+    else if(dir=='b')
     {
         matrix m=matrix(a.row+b.row,a.col);
-		for(i=1;i<=a.col;i++)
-		{
-			for(j=1;j<=a.row;j++)
-			{
+        for(i=1;i<=a.col;i++)
+        {
+            for(j=1;j<=a.row;j++)
+            {
                 _matrixData(m,j,i)=_matrixData(a,j,i);
-			}
-			for(j=a.row+1;j<=a.row+b.row;j++)
-			{
+            }
+            for(j=a.row+1;j<=a.row+b.row;j++)
+            {
                 _matrixData(m,j,i)=_matrixData(b,j-a.row,i);
-			}
-		}
+            }
+        }
         return m;
     }
     return a;
@@ -267,40 +267,40 @@ matrix matrix::matrixMerge(matrix a,matrix b,char dir)
 /****************************************************/
 matrix matrix::matrixExtract(matrix a,int t,int l,int b,int r)
 {
-	int i,j;
+    int i,j;
     matrix m=matrix(b-t+1,r-l+1);
-	l+=bias;
-	t+=bias;
-	r+=bias;
-	b+=bias;
-	for(i=t;i<=b;i++)
-	{
-		for(j=l;j<=r;j++)
+    l+=bias;
+    t+=bias;
+    r+=bias;
+    b+=bias;
+    for(i=t;i<=b;i++)
+    {
+        for(j=l;j<=r;j++)
         {
-			_matrixData(m,i-t+1,j-l+1)=_matrixData(a,i,j);
-		}
-	}
-	return m;
+            _matrixData(m,i-t+1,j-l+1)=_matrixData(a,i,j);
+        }
+    }
+    return m;
 }
 
 /********************************/
 //函数名：swapRow
 //参数：交换的两行
-//返回值：无	
+//返回值：无
 //功能：交换矩阵的行
 /********************************/
 void matrix::swapRow(int r1,int r2)
 {
-	int i;
+    int i;
     mtype temp;
     r1+=bias;
     r2+=bias;
     for(i=1;i<=col;i++)
-	{
+    {
         temp=_matrixData_p(this,r1,i);
         _matrixData_p(this,r1,i)=_matrixData_p(this,r2,i);
         _matrixData_p(this,r2,i)=temp;
-	}
+    }
 }
 
 /********************************/
@@ -311,44 +311,43 @@ void matrix::swapRow(int r1,int r2)
 /********************************/
 void matrix::swapCol(int c1,int c2)
 {
-	int i;
-	mtype temp;
+    int i;
+    mtype temp;
     c1+=bias;
     c2+=bias;
     for(i=1;i<=row;i++)
-	{
+    {
         temp=_matrixData_p(this,i,c1);
         _matrixData_p(this,i,c1)=_matrixData_p(this,i,c2);
         _matrixData_p(this,i,c2)=temp;
-	}
+    }
 }
 
 /********************************/
 //函数名：matrixPrint
 //参数：待打印矩阵
-//返回值：无	
+//返回值：无
 //功能：打印矩阵
 /********************************/
 void matrix::matrixPrint(matrix m)
 {
-	int i,j;
-	printf("[");
-	for(i=1;i<=m.row;i++)
-	{
-		for(j=1;j<=m.col;j++)
-		{
-			printf("%lf",_matrixData(m,i,j));
-			if(j!=m.col)
-			{
-				printf("\t");
-			}
-		}
-		if(i!=m.row)
-		{
-			printf("\n");
-		}
-	}
-	printf("]\n\n");
+    int i,j;
+    printf("[");
+    for(i=1;i<=m.row;i++)
+    {
+        for(j=1;j<=m.col;j++)
+        {
+            printf("%lf",_matrixData(m,i,j));
+            if(j!=m.col)
+            {
+                printf("\t");
+            }
+        }
+        if(i!=m.row)
+        {
+            printf("\n");
+        }
+    }
+    printf("]\n\n");
 }
-
 
