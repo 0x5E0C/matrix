@@ -10,7 +10,7 @@
 #define PROGRAMMER	1
 #define bias	PROGRAMMER
 
-#define _matrixData(M,r,c)	*(M.data+(r-1)*M.col+c-1)
+#define _matrixData(M,r,c)		*(M.data+(r-1)*M.col+c-1)
 #define _matrixData_p(M,r,c)	*(M->data+(r-1)*M->col+c-1)
 
 #define matrixData(M,r,c)	_matrixData(M,r+bias,c+bias)
@@ -20,9 +20,9 @@
 
 typedef struct matrix
 {
-	int row;
-	int col;
-	mtype *data;
+    int row;
+    int col;
+    mtype *data;
 } matrix;
 
 matrix createMatrix(int row,int col);
