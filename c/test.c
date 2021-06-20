@@ -7,11 +7,11 @@ int main()
     matrix a=createMatrix(2,4);                     //创建一个2x4的空矩阵
     matrix b=createIdentityMatrix(4);               //创建一个4x4的单位矩阵
     setMatrix(&a,1.0,0.0,3.0,1.0,\
-               2.0,1.0,0.0,2.0);                    //设置矩阵a的数据
+                 2.0,1.0,0.0,2.0);                  //设置矩阵a的数据
     setDiagonalMatrix(&b,2.0,5.0,3.0,8.0);          //设置矩阵b的对角线数据
     matrixPrint(a);                                 //打印a矩阵
     matrixPrint(b);                                 //打印b矩阵
-    printf("%d\n",matrixData(a,1,1));				//打印第2行第2列的数据（访问matrix*类型用matrixData_p）
+    printf("%lf\n",matrixData(a,1,1));				//打印第2行第2列的数据（访问matrix*类型用matrixData_p）
 
     matrix c=copyMatrix(a);                         //拷贝矩阵
     matrixPrint(c);
